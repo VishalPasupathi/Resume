@@ -108,6 +108,34 @@
     .section.active {
       display: flex;
     }
+    .nav-arrow {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      width: clamp(30px, 5vw, 40px);
+      height: clamp(30px, 5vw, 40px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      cursor: pointer;
+      transition: background 0.3s;
+      touch-action: manipulation;
+      z-index: 2;
+    }
+    .nav-arrow:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+    .nav-arrow.down {
+      bottom: 20px;
+    }
+    .nav-arrow.up {
+      top: 20px;
+    }
     .home-section {
       justify-content: center;
       align-items: center;
@@ -192,14 +220,12 @@
     .timeline {
       position: relative;
       width: 100%;
-      max-width: 100%;
+      max-width: 1200px;
       padding: 1rem;
       display: flex;
       flex-direction: row;
-      gap: 0.5rem;
       justify-content: space-between;
       white-space: nowrap;
-      overflow-x: hidden;
     }
     .timeline::before {
       content: '';
@@ -217,29 +243,28 @@
       right: -10px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: clamp(1rem, 3vw, 1.2rem);
+      font-size: clamp(0.8rem, 2vw, 1rem);
       color: rgba(255, 255, 255, 0.8);
       z-index: -1;
     }
     .timeline .timeline-item {
       text-align: center;
-      flex: 0 0 auto;
-      width: clamp(80px, 16%, 120px);
+      width: calc(100% / 6);
       position: relative;
       z-index: 1;
     }
     .timeline .timeline-item img {
-      width: clamp(30px, 8vw, 40px);
-      height: clamp(30px, 8vw, 40px);
+      width: clamp(25px, 6vw, 35px);
+      height: clamp(25px, 6vw, 35px);
       border-radius: 50%;
       margin-bottom: 0.5rem;
     }
     .timeline .timeline-item .year {
-      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      font-size: clamp(0.7rem, 1.8vw, 0.8rem);
       font-weight: 500;
     }
     .timeline .timeline-item .location {
-      font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+      font-size: clamp(0.6rem, 1.6vw, 0.7rem);
       font-weight: 300;
     }
     .timeline .timeline-item::before {
@@ -248,8 +273,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       background: white;
       border-radius: 50%;
       z-index: 1;
@@ -435,10 +460,7 @@
         padding: 3rem 1rem;
       }
       .timeline .timeline-item {
-        width: clamp(70px, 15%, 100px);
-      }
-      .experience-section .industry-grid {
-        grid-template-columns: repeat(3, 1fr);
+        width: calc(100% / 6);
       }
     }
 
@@ -453,7 +475,21 @@
         font-size: clamp(1rem, 3vw, 1.2rem);
       }
       .timeline .timeline-item {
-        width: clamp(60px, 14%, 80px);
+        width: calc(100% / 6);
+      }
+      .timeline .timeline-item img {
+        width: clamp(20px, 5vw, 30px);
+        height: clamp(20px, 5vw, 30px);
+      }
+      .timeline .timeline-item .year {
+        font-size: clamp(0.6rem, 1.6vw, 0.7rem);
+      }
+      .timeline .timeline-item .location {
+        font-size: clamp(0.5rem, 1.4vw, 0.6rem);
+      }
+      .timeline .timeline-item::before {
+        width: 6px;
+        height: 6px;
       }
       .experience-section .industry-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -483,8 +519,10 @@
     <div class="description">
       Strategic Data and Automation Specialist with 8+ years of consulting and banking experience, delivering enterprise-grade AI, data, and automation solutions at scale. Focused on building intelligent, efficient systems that drive business value—bringing deep expertise in Identity Oversight and ESG to ensure alignment with compliance, security, and sustainability goals. Known for transforming complex challenges into streamlined, future-ready architectures.
     </div>
+    <div class="nav-arrow down" onclick="navigateSection('next')">↓</div>
   </div>
   <div id="about" class="section about-section">
+    <div class="nav-arrow up" onclick="navigateSection('prev')">↑</div>
     <h2>My Main Gig.</h2>
     <div class="content-container">
       <div class="quote-container">
@@ -561,8 +599,10 @@
         <div class="location">Saudi Arabia</div>
       </div>
     </div>
+    <div class="nav-arrow down" onclick="navigateSection('next')">↓</div>
   </div>
   <div id="skills" class="section skills-section">
+    <div class="nav-arrow up" onclick="navigateSection('prev')">↑</div>
     <h2>My Skills.</h2>
     <div class="description" id="skillsDescription">
       Throughout my career, I’ve developed deep expertise in AI, Data, and Automation, leveraging cutting-edge tools to drive insights and streamline processes. Below, I’ve showcased some of my favorite skills that might pique your interest.
@@ -892,8 +932,10 @@
         </tr>
       </table>
     </div>
+    <div class="nav-arrow down" onclick="navigateSection('next')">↓</div>
   </div>
   <div id="experience" class="section experience-section">
+    <div class="nav-arrow up" onclick="navigateSection('prev')">↑</div>
     <h2>My Experience.</h2>
     <div class="description">
       I have successfully navigated projects spanning diverse scales and domains, including education, media, government, banking, insurance, retail, manufacturing, pharmaceuticals, and more. Feel free to explore my portfolio by clicking the selected logos below to delve into the details of the work I’ve undertaken, if you find it of interest.
@@ -945,8 +987,10 @@
         </a>
       </div>
     </div>
+    <div class="nav-arrow down" onclick="navigateSection('next')">↓</div>
   </div>
   <div id="contact" class="section contact-section">
+    <div class="nav-arrow up" onclick="navigateSection('prev')">↑</div>
     <h2>Contact Me.</h2>
     <div class="funny-text">
       You actually scrolled till the very end! 🤯
@@ -1009,7 +1053,6 @@
     // Section navigation
     const sections = ['home', 'about', 'skills', 'experience', 'contact'];
     let currentSectionIndex = 0;
-    let isScrolling = false;
 
     function showSection(sectionId) {
       document.querySelectorAll('.section').forEach(section => {
@@ -1028,45 +1071,17 @@
       }
     }
 
-    // Scroll handling
-    function handleScroll(event) {
-      if (isScrolling) return;
-      isScrolling = true;
-      setTimeout(() => { isScrolling = false; }, 500);
-
-      const delta = event.deltaY > 0 ? 1 : -1;
-      let newIndex = currentSectionIndex + delta;
-      if (newIndex < 0) newIndex = 0;
-      if (newIndex >= sections.length) newIndex = sections.length - 1;
+    function navigateSection(direction) {
+      let newIndex = currentSectionIndex;
+      if (direction === 'next' && currentSectionIndex < sections.length - 1) {
+        newIndex++;
+      } else if (direction === 'prev' && currentSectionIndex > 0) {
+        newIndex--;
+      }
       if (newIndex !== currentSectionIndex) {
         showSection(sections[newIndex]);
       }
     }
-
-    // Touch handling
-    let touchStartY = 0;
-    function handleTouchStart(event) {
-      touchStartY = event.touches[0].clientY;
-    }
-    function handleTouchMove(event) {
-      if (isScrolling) return;
-      const touchEndY = event.touches[0].clientY;
-      const delta = touchStartY - touchEndY;
-      if (Math.abs(delta) > 50) {
-        isScrolling = true;
-        setTimeout(() => { isScrolling = false; }, 500);
-        let newIndex = currentSectionIndex + (delta > 0 ? 1 : -1);
-        if (newIndex < 0) newIndex = 0;
-        if (newIndex >= sections.length) newIndex = sections.length - 1;
-        if (newIndex !== currentSectionIndex) {
-          showSection(sections[newIndex]);
-        }
-      }
-    }
-
-    document.addEventListener('wheel', handleScroll);
-    document.addEventListener('touchstart', handleTouchStart);
-    document.addEventListener('touchmove', handleTouchMove);
 
     // Hamburger menu toggle
     document.querySelector('.hamburger').addEventListener('click', () => {
