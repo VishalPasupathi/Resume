@@ -184,7 +184,7 @@
       width: 100%;
     }
     .about-section h2 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-size: clamp(1rem, 4vw, 2rem);
       font-weight: 700;
       margin-bottom: 1.5rem;
       text-transform: uppercase;
@@ -194,13 +194,18 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      max-width: 1200px;
+      max-width: 800px;
       gap: 1rem;
     }
-    .about-section .quote, .about-section .description {
+    .about-section .quote, .about-section .about-description {
       font-size: clamp(0.9rem, 2.5vw, 1.1rem);
       font-weight: 300;
       line-height: 1.6;
+    }
+    .about-section .about-description {
+      text-align: justify;
+      margin: 0 auto;
+      max-width: 90%;
     }
     .about-section .stats {
       display: grid;
@@ -232,7 +237,7 @@
       position: absolute;
       top: 50%;
       left: 0;
-      width: calc(100% - 10px);
+      width: calc(100% - 5px);
       height: 2px;
       background: rgba(255, 255, 255, 0.5);
       z-index: -1;
@@ -240,7 +245,7 @@
     .timeline::after {
       content: '▶';
       position: absolute;
-      right: -10px;
+      right: -5px;
       top: 50%;
       transform: translateY(-50%);
       font-size: clamp(0.8rem, 2vw, 1rem);
@@ -397,6 +402,70 @@
     .experience-section .industry-item img {
       width: clamp(40px, 10vw, 50px);
       height: clamp(40px, 10vw, 50px);
+      cursor: pointer;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .popup-content {
+      background: white;
+      color: black;
+      padding: 2rem;
+      border-radius: 8px;
+      width: clamp(300px, 80vw, 600px);
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: black;
+    }
+    .popup-title {
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .popup-description {
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .popup-tools, .popup-clients {
+      margin-bottom: 1rem;
+    }
+    .popup-tools h4, .popup-clients h4 {
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .popup-tools .tools-text {
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      line-height: 1.6;
+    }
+    .popup-clients .clients-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .popup-clients .client-item img {
+      width: clamp(30px, 8vw, 40px);
+      height: clamp(30px, 8vw, 40px);
     }
     .contact-section {
       flex-direction: column;
@@ -429,7 +498,26 @@
       width: clamp(30px, 8vw, 40px);
       height: clamp(30px, 8vw, 40px);
     }
-
+    .contact-section .copyright {
+      font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+      font-weight: 300;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .industry-item {
+      text-align: center;
+      margin: 5px;
+    }
+    .industry-item img {
+      display: block;
+      margin: 0 auto;
+    }
+    .industry-item .description {
+      font-size: 15px;
+      color: #ffffff;
+      margin-top: 5px;
+      white-space: nowrap;
+    }
     @media (max-width: 768px) {
       .nav-menu {
         display: none;
@@ -462,8 +550,13 @@
       .timeline .timeline-item {
         width: calc(100% / 6);
       }
+      .popup-content {
+        width: 90vw;
+      }
+      .about-section .about-description {
+        max-width: 95%;
+      }
     }
-
     @media (max-width: 480px) {
       .section {
         padding: 2rem 0.5rem;
@@ -498,6 +591,9 @@
         width: clamp(30px, 8vw, 40px);
         height: clamp(30px, 8vw, 40px);
       }
+      .about-section .about-description {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -527,14 +623,15 @@
     <div class="content-container">
       <div class="quote-container">
         <div class="quote">
-          Since you've crunched the homepage data, it's time I reveal some insights about myself, right? 📊
+               
         </div>
       </div>
-      <div class="description-container">
-        <div class="description">
-          I am a certified RPA Architect and Developer, Conversational AI Developer, Data Analyst, and ESG Consultant with a Master's in Data Science. My expertise spans Digital Transformation, End-to-End Implementation, and Identity Oversight.<br><br>
-          I primarily work in the Banking and Finance sector, with extensive experience in Healthcare, Energy, Construction, Telecom, Real Estate, Superannuation, and Retail industries.
-        </div>
+      <div style="text-align: center;">
+        <p class="about-description">
+          Since you've crunched the homepage data, it's time I reveal some insights about myself, right? 
+          <br><br>
+          I am a certified RPA Architect and Developer, Conversational AI Developer, Data Analyst, and ESG Consultant with a Master's in Data Science. My expertise spans Digital Transformation, End-to-End Implementation, and Identity Oversight. I primarily work in the Banking and Finance sector, with extensive experience in Healthcare, Energy, Construction, Telecom, Real Estate, Superannuation, and Retail industries.
+        </p>
       </div>
     </div>
     <div class="stats">
@@ -838,6 +935,18 @@
           </td>
         </tr>
         <tr>
+          <td>Test Automation</td>
+          <td>
+            <div class="skills-grid">
+              <div class="skill-item">
+                <a href="https://playwright.dev" target="_blank">
+                  <img src="https://logo.clearbit.com/playwright.dev" alt="Playwright Logo">
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
           <td>Cloud Platforms</td>
           <td>
             <div class="skills-grid">
@@ -938,53 +1047,59 @@
     <div class="nav-arrow up" onclick="navigateSection('prev')">↑</div>
     <h2>My Experience.</h2>
     <div class="description">
-      I have successfully navigated projects spanning diverse scales and domains, including education, media, government, banking, insurance, retail, manufacturing, pharmaceuticals, and more. Feel free to explore my portfolio by clicking the selected logos below to delve into the details of the work I’ve undertaken, if you find it of interest.
+      With over 8 years of expertise, I’ve delivered transformative automation and data solutions across industries like banking, healthcare, and telecom. Click the logos below to explore my impactful projects and clients.
     </div>
     <div class="industry-grid">
-      <div class="industry-item">
-        <a href="/portfolio/banking" target="_blank">
-          <img src="https://img.icons8.com/?size=100&id=121998&format=png&color=ffffff" alt="Banking Icon">
-        </a>
+      <div class="industry-item" onclick="showPopup('construction')">
+        <img src="https://img.icons8.com/?size=100&id=44463&format=png&color=ffffff" alt="Construction Icon">
+        <p class="description">Construction</p>
       </div>
-      <div class="industry-item">
-        <a href="/portfolio/construction" target="_blank">
-          <img src="https://img.icons8.com/?size=100&id=121999&format=png&color=ffffff" alt="Construction Icon">
-        </a>
+      <div class="industry-item" onclick="showPopup('banking')">
+        <img src="https://img.icons8.com/?size=100&id=59049&format=png&color=ffffff" alt="Banking Icon">
+        <p class="description">Banking</p>
       </div>
-      <div class="industry-item">
-        <a href="/portfolio/energy" target="_blank">
-          <img src="https://img.icons8.com/?size=100&id=122000&format=png&color=ffffff" alt="Energy Sector Icon">
-        </a>
+      <div class="industry-item" onclick="showPopup('energy')">
+        <img src="https://img.icons8.com/?size=100&id=16421&format=png&color=ffffff" alt="Energy Sector Icon">
+        <p class="description">Energy</p>
       </div>
-      <div class="industry-item">
-        <a href="/portfolio/healthcare" target="_blank">
-          <img src="https://img.icons8.com/?size=100&id=122001&format=png&color=ffffff" alt="Healthcare Icon">
-        </a>
+      <div class="industry-item" onclick="showPopup('healthcare')">
+        <img src="https://img.icons8.com/?size=100&id=122001&format=png&color=ffffff" alt="Healthcare Icon">
+        <p class="description">Healthcare</p>
       </div>
-      <div class="industry-item">
-        <a href="/portfolio/real-estate" target="_blank">
-          <img src="https://img.icons8.com/?size=100&id=122002&format=png&color=ffffff" alt="Real Estate Icon">
-        </a>
+      <div class="industry-item" onclick="showPopup('real-estate')">
+        <img src="https://img.icons8.com/?size=100&id=rf205v0UeqW6&format=png&color=ffffff" alt="Real Estate Icon">
+        <p class="description">Real Estate</p>
       </div>
-      <div class="industry-item">
-        <a href="/portfolio/retail" target="_blank">
-          <img src="https://img.icons8.com/?size=100&id=122003&format=png&color=ffffff" alt="Retail Icon">
-        </a>
+      <div class="industry-item" onclick="showPopup('retail')">
+        <img src="https://img.icons8.com/?size=100&id=Iw8kf8yIpMJc&format=png&color=ffffff" alt="Retail Icon">
+        <p class="description">Retail</p>
       </div>
-      <div class="industry-item">
-        <a href="/portfolio/superannuation" target="_blank">
-          <img src="https://img.icons8.com/?size=100&id=122004&format=png&color=ffffff" alt="Superannuation Icon">
-        </a>
+      <div class="industry-item" onclick="showPopup('superannuation')">
+        <img src="https://img.icons8.com/?size=100&id=puduQePOg0sL&format=png&color=ffffff" alt="Superannuation Icon">
+        <p class="description">Superannuation</p>
       </div>
-      <div class="industry-item">
-        <a href="/portfolio/telecom" target="_blank">
-          <img src="https://img.icons8.com/?size=100&id=122005&format=png&color=ffffff" alt="Telecom Icon">
-        </a>
+      <div class="industry-item" onclick="showPopup('telecom')">
+        <img src="https://img.icons8.com/?size=100&id=uZbCpMXh44Di&format=png&color=ffffff" alt="Telecom Icon">
+        <p class="description">Telecom</p>
       </div>
-      <div class="industry-item">
-        <a href="/portfolio/education" target="_blank">
-          <img src="https://img.icons8.com/?size=100&id=122006&format=png&color=ffffff" alt="Education Icon">
-        </a>
+      <div class="industry-item" onclick="showPopup('government')">
+        <img src="https://img.icons8.com/?size=100&id=XytcSAJl81L9&format=png&color=ffffff" alt="Government Icon">
+        <p class="description">Government</p>
+      </div>
+    </div>
+    <div class="popup" id="industryPopup">
+      <div class="popup-content">
+        <button class="popup-close" onclick="closePopup()">✕</button>
+        <h3 class="popup-title" id="popupTitle"></h3>
+        <p class="popup-description" id="popupDescription"></p>
+        <div class="popup-tools">
+          <h4><b>Tools Used: </b></h4>
+          <p class="tools-text" id="popupTools"></p>
+        </div>
+        <div class="popup-clients">
+          <h4><b>Clients: </b></h4>
+          <div class="clients-grid" id="popupClients"></div>
+        </div>
       </div>
     </div>
     <div class="nav-arrow down" onclick="navigateSection('next')">↓</div>
@@ -993,10 +1108,10 @@
     <div class="nav-arrow up" onclick="navigateSection('prev')">↑</div>
     <h2>Contact Me.</h2>
     <div class="funny-text">
-      You actually scrolled till the very end! 🤯
+      You made it to the end of the scroll-athon! 😜
     </div>
     <div class="description">
-      Should you find yourself intrigued and eager to delve deeper in conversation, feel free to connect with me through any of the platforms listed below. I'm always open to engaging in meaningful discussions and would love to hear from you.
+      If you're pumped to keep the convo going, hit me up on any of the platforms below. I'm all ears (or rather, all text) for some epic chats!
     </div>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/vishalpasupathi/" target="_blank">
@@ -1015,40 +1130,102 @@
         <img src="https://purepng.com/public/uploads/large/purepng.com-phone-iconsymbolsiconsapple-iosiosios-8-iconsios-8-721522596098aomr5.png" alt="Mobile Icon">
       </a>
     </div>
+    <div class="copyright">© Vishal Pasupathi | 2025</div>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script type="text/javascript">
-    var gk_isXlsx = false;
-    var gk_xlsxFileLookup = {};
-    var gk_fileData = {};
-    function filledCell(cell) {
-      return cell !== '' && cell != null;
-    }
-    function loadFileData(filename) {
-      if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-        try {
-          var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-          var firstSheetName = workbook.SheetNames[0];
-          var worksheet = workbook.Sheets[firstSheetName];
-          var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-          var filteredData = jsonData.filter(row => row.some(filledCell));
-          var headerRowIndex = filteredData.findIndex((row, index) =>
-            row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-          );
-          if (headerRowIndex === -1 || headerRowIndex > 25) {
-            headerRowIndex = 0;
-          }
-          var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
-          csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-          return csv;
-        } catch (e) {
-          console.error(e);
-          return "";
-        }
+    // Industry popup data
+    const industryData = {
+      construction: {
+        title: "Construction",
+        description: "Streamlined project reporting and cost tracking for construction initiatives, leveraging data visualization to enhance decision-making and operational efficiency for UGL.",
+        tools: ["Power BI", "SSRS"],
+        clients: [
+          { name: "UGL", url: "https://www.ugllimited.com", logo: "https://logo.clearbit.com/ugllimited.com" }
+        ]
+      },
+      banking: {
+        title: "Banking",
+        description: "Developed robust automation and data solutions for major banks, enhancing compliance, identity oversight, and operational efficiency using RPA, analytics, and secure APIs.",
+        tools: [
+          "Blue Prism", "Automation Anywhere", "Power BI", "Tableau", "PEGA", "QPR Botteq",
+          "MS SQL", "Python", "Excel Macros", "VB Script", "SailPoint", "CyberArk", "REST API", "SOAP API"
+        ],
+        clients: [
+          { name: "Barclays", url: "https://www.barclays.com", logo: "https://logo.clearbit.com/barclays.com" },
+          { name: "ENBD", url: "https://www.emiratesnbd.com", logo: "https://logo.clearbit.com/emiratesnbd.com" },
+          { name: "KFH", url: "https://www.kfh.com", logo: "https://logo.clearbit.com/kfh.com" },
+          { name: "NBK", url: "https://www.nbk.com", logo: "https://logo.clearbit.com/nbk.com" },
+          { name: "Qatar Development Bank", url: "https://www.qdb.qa", logo: "https://logo.clearbit.com/qdb.qa" },
+          { name: "Saudi Awwal Bank", url: "https://www.sab.com", logo: "https://logo.clearbit.com/sab.com" },
+          { name: "Commonwealth Bank", url: "https://www.commbank.com.au", logo: "https://www.edigitalagency.com.au/wp-content/uploads/commbank-logo-png-large-icon-diamond.png" }
+        ]
+      },
+      energy: {
+        title: "Energy Sector",
+        description: "Automated data reporting and process optimization for energy giants, improving operational efficiency and sustainability tracking with RPA and analytics tools.",
+        tools: ["Power BI", "UiPath", "Excel Macro"],
+        clients: [
+          { name: "Saudi Aramco", url: "https://www.aramco.com", logo: "https://logo.clearbit.com/aramco.com" },
+          { name: "ADNOC", url: "https://www.adnoc.ae", logo: "https://logo.clearbit.com/adnoc.ae" }
+        ]
+      },
+      healthcare: {
+        title: "Healthcare",
+        description: "Enhanced healthcare operations by automating repetitive tasks and improving data accuracy, supporting efficient patient and operational workflows for BD.",
+        tools: ["Automation Anywhere", "Excel Macro"],
+        clients: [
+          { name: "Becton Dickinson", url: "https://www.bd.com", logo: "https://logo.clearbit.com/bd.com" }
+        ]
+      },
+      'real-estate': {
+        title: "Real Estate",
+        description: "Developed data-driven solutions for property management, automating reporting and enhancing decision-making with advanced scripting for Dexus.",
+        tools: ["Automation 360", "MS SQL", "Python", "JavaScript"],
+        clients: [
+          { name: "Dexus", url: "https://www.dexus.com", logo: "https://logo.clearbit.com/dexus.com" }
+        ]
+      },
+      telecom: {
+        title: "Telecom",
+        description: "Optimized telecom operations with RPA and API integrations, improving service delivery and data management for leading providers like Nokia and Telstra.",
+        tools: ["Blue Prism", "UiPath", "Automation 360", "Excel Macros", "MS SQL", "REST API"],
+        clients: [
+          { name: "Nokia", url: "https://www.nokia.com", logo: "https://logo.clearbit.com/nokia.com" },
+          { name: "Telstra", url: "https://www.telstra.com.au", logo: "https://logo.clearbit.com/telstra.com.au" },
+          { name: "Oreta", url: "https://www.oreta.com.au", logo: "https://logo.clearbit.com/oreta.com.au" }
+        ]
+      },
+      retail: {
+        title: "Retail",
+        description: "Transformed retail operations with automation and web testing, streamlining inventory and customer data processes for brands like David Jones and Witchery.",
+        tools: ["Automation 360", "Python", "Excel Macros", "REST API", "Playwright", "HTML", "CSS"],
+        clients: [
+          { name: "David Jones", url: "https://www.davidjones.com", logo: "https://logo.clearbit.com/davidjones.com" },
+          { name: "Country Road Group", url: "https://www.countryroad.com.au", logo: "https://logo.clearbit.com/countryroad.com.au" },
+          { name: "Mico", url: "https://www.mico.co.nz", logo: "https://logo.clearbit.com/mico.co.nz" },
+          { name: "Politix", url: "https://www.politix.com.au", logo: "https://logo.clearbit.com/politix.com.au" },
+          { name: "Witchery", url: "https://www.witchery.com.au", logo: "https://logo.clearbit.com/witchery.com.au" },
+          { name: "Ternary", url: "https://www.ternary.com.au", logo: "https://logo.clearbit.com/ternary.com.au" }
+        ]
+      },
+      superannuation: {
+        title: "Superannuation",
+        description: "Enhanced superannuation processes with automated testing, ensuring compliance and accuracy in fund management for REST Superannuation.",
+        tools: ["Playwright", "UiPath Test Suite"],
+        clients: [
+          { name: "REST Superannuation", url: "https://rest.com.au", logo: "https://logo.clearbit.com/rest.com.au" }
+        ]
+      },
+      government: {
+        title: "Government",
+        description: "Streamlined utility billing processes for DEWA, automating workflows to improve efficiency and customer satisfaction in government operations.",
+        tools: ["UiPath"],
+        clients: [
+          { name: "DEWA", url: "https://www.dewa.gov.ae", logo: "https://logo.clearbit.com/dewa.gov.ae" }
+        ]
       }
-      return gk_fileData[filename] || "";
-    }
+    };
 
     // Section navigation
     const sections = ['home', 'about', 'skills', 'experience', 'contact'];
@@ -1081,6 +1258,29 @@
       if (newIndex !== currentSectionIndex) {
         showSection(sections[newIndex]);
       }
+    }
+
+    // Popup handling
+    function showPopup(industry) {
+      const data = industryData[industry];
+      if (!data) return;
+      document.getElementById('popupTitle').textContent = data.title;
+      document.getElementById('popupDescription').textContent = data.description;
+      const toolsText = document.getElementById('popupTools');
+      toolsText.textContent = data.tools.join(', ');
+      const clientsGrid = document.getElementById('popupClients');
+      clientsGrid.innerHTML = '';
+      data.clients.forEach(client => {
+        const clientItem = document.createElement('div');
+        clientItem.className = 'client-item';
+        clientItem.innerHTML = `<a href="${client.url}" target="_blank"><img src="${client.logo}" alt="${client.name} Logo"></a>`;
+        clientsGrid.appendChild(clientItem);
+      });
+      document.getElementById('industryPopup').style.display = 'flex';
+    }
+
+    function closePopup() {
+      document.getElementById('industryPopup').style.display = 'none';
     }
 
     // Hamburger menu toggle
@@ -1149,7 +1349,7 @@
       if (charIndex < typewriterText.length) {
         typewriterElement.textContent = typewriterText.substring(0, charIndex + 1);
         charIndex++;
-        setTimeout(type, 100);
+        setTimeout(type, 60);
       }
     }
     type();
